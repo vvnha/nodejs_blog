@@ -5,9 +5,10 @@ const app = express();
 const path = require('path');
 const port = 3000;
 
-// get image
+// get image base on public folder
 app.use(express.static(path.join(__dirname, 'public')));
 console.log(path.join(__dirname, 'public'));
+// use morgan to check HTTP
 app.use(morgan('combined'))
 //template engine
 app.engine('hbs', handlebars({
@@ -18,11 +19,11 @@ app.set('views', path.join(__dirname,'resources/views'));
 
 
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('home'); // get home from views folder after using handlebars
 })
 
 app.get('/news', (req, res) => {
-  res.render('news');
+  res.render('news'); // like get home
 })
 
 app.listen(port, () => {
